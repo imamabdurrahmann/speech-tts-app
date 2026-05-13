@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Latihan berbicara dengan Text-to-Speech dan topik acak">
+    <title>Speech TTS — Latihan Berbicara</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+                <span>Speech TTS</span>
+            </div>
+            <div class="header-actions">
+                <button class="btn-icon" id="btn-sound" aria-label="Toggle sound" title="Toggle sound">
+                    <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                    <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <line x1="23" y1="9" x2="17" y2="15"/>
+                        <line x1="17" y1="9" x2="23" y2="15"/>
+                    </svg>
+                </button>
+                <button class="btn-icon" id="btn-theme" aria-label="Toggle theme" title="Toggle theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main">
+
+        <!-- Tab Navigation -->
+        <nav class="tab-nav" id="tab-nav">
+            <button class="tab-btn active" data-tab="topic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                Topik
+            </button>
+            <button class="tab-btn" data-tab="timer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Timer
+            </button>
+            <button class="tab-btn" data-tab="interview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Interview
+            </button>
+            <button class="tab-btn" data-tab="vocab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+                Vocab
+            </button>
+            <button class="tab-btn" data-tab="tts">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+                TTS
+            </button>
+            <button class="tab-btn" data-tab="stt">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                    <line x1="2" y1="2" x2="22" y2="22"/>
+                </svg>
+                STT
+            </button>
+            <button class="tab-btn" data-tab="favorites">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                Favorit
+            </button>
+            <button class="tab-btn" data-tab="stats">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                Stats
+            </button>
+        </nav>
+
+        <!-- Topic Generator Section -->
+        <section class="section section-topic tab-content" data-tab-content="topic">
+            <div class="section-header">
+                <div class="topic-actions">
+                    <select class="select" id="select-category">
+                        <option value="all">Semua Kategori</option>
+                        <option value="opinion">Opini</option>
+                        <option value="experience">Pengalaman</option>
+                        <option value="debate">Debat</option>
+                        <option value="fun">Seru</option>
+                    </select>
+                    <select class="select" id="select-difficulty">
+                        <option value="all">Semua Level</option>
+                        <option value="easy">Mudah</option>
+                        <option value="medium">Sedang</option>
+                        <option value="hard">Sulit</option>
+                    </select>
+                    <button class="btn btn-primary" id="btn-new-topic">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 4 23 10 17 10"/>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                        </svg>
+                        Topik Baru
+                    </button>
+                    <button class="btn btn-secondary" id="btn-topic-history">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        Riwayat
+                    </button>
+                </div>
+            </div>
+
+            <!-- Daily Challenge Card -->
+            <div class="daily-challenge" id="daily-challenge">
+                <div class="daily-header">
+                    <div class="daily-title-row">
+                        <svg class="daily-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <span class="daily-label">Tantangan Harian</span>
+                        <span class="daily-streak" id="daily-streak">🔥 0 hari</span>
+                    </div>
+                    <span class="daily-date" id="daily-date"></span>
+                </div>
+                <p class="daily-topic" id="daily-topic"></p>
+                <div class="daily-actions">
+                    <span class="daily-difficulty" id="daily-difficulty"></span>
+                    <button class="btn btn-primary daily-btn" id="btn-daily-complete">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Selesai
+                    </button>
+                </div>
+            </div>
+
+            <div class="topic-display" id="topic-display">
+                <p class="topic-text" id="topic-text">Klik tombol "Topik Baru" untuk mendapatkan topik berbicara!</p>
+                <span class="topic-difficulty" id="topic-difficulty"></span>
+                <button class="btn-copy" id="btn-copy-topic" aria-label="Copy topic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                </button>
+                <button class="btn-topic-tts" id="btn-topic-tts" aria-label="Dengarkan topik">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                    </svg>
+                </button>
+                <button class="btn-bookmark" id="btn-bookmark-topic" aria-label="Bookmark topic">
+                    <svg class="icon-bookmark-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <svg class="icon-bookmark-on" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="display:none;">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Topic History Panel -->
+            <div class="topic-history-panel" id="topic-history-panel" style="display:none;">
+                <div class="topic-history-header">
+                    <h3 class="topic-history-title">Riwayat Topik</h3>
+                    <button class="btn-icon" id="btn-close-history" title="Tutup">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="topic-history-list" id="topic-history-list">
+                    <p class="history-empty">Belum ada riwayat.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timer Section -->
+        <section class="section section-timer tab-content" data-tab-content="timer">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    Timer
+                </h2>
+            </div>
+
+            <!-- Practice Mode -->
+            <div class="practice-mode" id="practice-mode">
+                <div class="practice-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    <span>Mode Latihan</span>
+                </div>
+                <p class="practice-desc">
+                    Topik otomatis + Timer + TTS — latihan berbicara tanpa ribet.
+                </p>
+                <div class="practice-topic" id="practice-topic">
+                    Klik "Mulai Latihan" untuk mendapatkan topik...
+                </div>
+                <div class="practice-controls">
+                    <select class="select" id="practice-duration">
+                        <option value="60">1 menit</option>
+                        <option value="120" selected>2 menit</option>
+                        <option value="180">3 menit</option>
+                        <option value="300">5 menit</option>
+                    </select>
+                    <button class="btn btn-primary" id="btn-practice-start">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                        Mulai Latihan
+                    </button>
+                    <button class="btn btn-secondary" id="btn-practice-stop" style="display:none;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        </svg>
+                        Stop
+                    </button>
+                </div>
+            </div>
+
+            <!-- Timer Display -->
+            <div class="timer-container">
+                <div class="timer-ring-wrapper">
+                    <svg class="timer-ring" viewBox="0 0 200 200">
+                        <circle class="timer-ring-bg" cx="100" cy="100" r="90"/>
+                        <circle class="timer-ring-progress" id="timer-ring-progress" cx="100" cy="100" r="90"/>
+                    </svg>
+                    <div class="timer-display">
+                        <span class="timer-time" id="timer-time">00:00</span>
+                        <span class="timer-label" id="timer-label">Siap</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timer Duration Presets -->
+            <div class="timer-presets">
+                <button class="btn btn-preset" data-duration="60">1 menit</button>
+                <button class="btn btn-preset" data-duration="120">2 menit</button>
+                <button class="btn btn-preset active" data-duration="180">3 menit</button>
+                <button class="btn btn-preset" data-duration="300">5 menit</button>
+                <button class="btn btn-preset" data-duration="600">10 menit</button>
+            </div>
+
+            <!-- Custom Duration -->
+            <div class="timer-custom">
+                <label class="timer-custom-label" for="input-custom-duration">Atur sendiri:</label>
+                <input type="number" class="input-custom-duration" id="input-custom-duration" min="10" max="3600" step="10" placeholder="detik">
+                <span class="timer-custom-unit">detik</span>
+                <button class="btn btn-secondary" id="btn-set-custom-duration">Set</button>
+            </div>
+
+            <!-- Timer Controls -->
+            <div class="timer-controls">
+                <button class="btn btn-play timer-btn-start" id="btn-timer-start">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    <span>Mulai</span>
+                </button>
+                <button class="btn btn-secondary timer-btn-pause" id="btn-timer-pause" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="6" y="4" width="4" height="16"/>
+                        <rect x="14" y="4" width="4" height="16"/>
+                    </svg>
+                    <span>Jeda</span>
+                </button>
+                <button class="btn btn-secondary timer-btn-reset" id="btn-timer-reset" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"/>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                    </svg>
+                    <span>Reset</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Interview Prep Section -->
+        <section class="section section-interview tab-content" data-tab-content="interview">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    Interview Prep
+                </h2>
+                <div class="interview-actions">
+                    <select class="select" id="select-interview-category">
+                        <!-- Options populated by JS -->
+                    </select>
+                    <button class="btn btn-primary" id="btn-interview-random">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 3 21 3 21 8"/>
+                            <line x1="4" y1="20" x2="21" y2="3"/>
+                            <polyline points="21 16 21 21 16 21"/>
+                            <line x1="15" y1="15" x2="21" y2="21"/>
+                            <line x1="4" y1="4" x2="9" y2="9"/>
+                        </svg>
+                        Acak
+                    </button>
+                </div>
+            </div>
+
+            <!-- Framework Tabs -->
+            <div class="framework-tabs">
+                <button class="btn btn-framework active" data-framework="STAR">STAR</button>
+                <button class="btn btn-framework" data-framework="PREP">PREP</button>
+                <button class="btn btn-framework" data-framework="PPF">PPF</button>
+                <button class="btn btn-framework" data-framework="MECE">MECE</button>
+            </div>
+
+            <!-- Framework Info Card -->
+            <div class="framework-card" id="framework-card">
+                <div class="framework-header">
+                    <h3 class="framework-title" id="framework-title">STAR</h3>
+                    <p class="framework-fullname" id="framework-fullname">Situation, Task, Action, Result</p>
+                </div>
+                <p class="framework-desc" id="framework-desc"></p>
+                <div class="framework-steps" id="framework-steps"></div>
+            </div>
+
+            <!-- Question Display -->
+            <div class="question-card" id="question-card">
+                <div class="question-header">
+                    <span class="question-category" id="question-category-label"></span>
+                    <div class="question-actions">
+                        <button class="btn-icon" id="btn-interview-copy" title="Salin pertanyaan">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                        </button>
+                        <button class="btn-icon" id="btn-interview-to-tts" title="Masukkan ke TTS">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <p class="question-text" id="question-text">Klik "Acak" untuk mendapatkan pertanyaan interview!</p>
+
+                <!-- STAR Answer (expandable) -->
+                <div class="answer-section" id="answer-section" style="display:none;">
+                    <button class="btn-toggle-answer" id="btn-toggle-answer">
+                        <span class="toggle-label">Lihat Contoh Jawaban (STAR)</span>
+                        <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </button>
+                    <div class="answer-content" id="answer-content" style="display:none;">
+                        <div class="answer-part" data-part="situation">
+                            <strong>S — Situation:</strong>
+                            <p id="answer-s"></p>
+                        </div>
+                        <div class="answer-part" data-part="task">
+                            <strong>T — Task:</strong>
+                            <p id="answer-t"></p>
+                        </div>
+                        <div class="answer-part" data-part="action">
+                            <strong>A — Action:</strong>
+                            <p id="answer-a"></p>
+                        </div>
+                        <div class="answer-part" data-part="result">
+                            <strong>R — Result:</strong>
+                            <p id="answer-r"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consulting Answer (expandable) -->
+                <div class="answer-section" id="consult-answer-section" style="display:none;">
+                    <button class="btn-toggle-answer" id="btn-toggle-consult-answer">
+                        <span class="toggle-label">Lihat Contoh Jawaban</span>
+                        <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </button>
+                    <div class="answer-content consult-answer" id="consult-answer-content" style="display:none;">
+                        <p id="consult-answer-text"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learn Vocab Section -->
+        <section class="section section-vocab tab-content" data-tab-content="vocab">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                    Learn Vocab
+                </h2>
+                <div class="vocab-actions">
+                    <select class="select" id="select-vocab-category">
+                        <!-- Options populated by JS -->
+                    </select>
+                    <button class="btn btn-primary" id="btn-vocab-random">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 3 21 3 21 8"/>
+                            <line x1="4" y1="20" x2="21" y2="3"/>
+                            <polyline points="21 16 21 21 16 21"/>
+                            <line x1="15" y1="15" x2="21" y2="21"/>
+                            <line x1="4" y1="4" x2="9" y2="9"/>
+                        </svg>
+                        Acak
+                    </button>
+                </div>
+            </div>
+
+            <!-- Word Card -->
+            <div class="word-card" id="word-card">
+                <div class="word-header">
+                    <div class="word-main">
+                        <span class="word-text" id="word-text">Kata</span>
+                        <span class="word-pronunciation" id="word-pronunciation">/pronunciation/</span>
+                    </div>
+                    <div class="word-meta">
+                        <span class="word-pos" id="word-pos">noun</span>
+                        <span class="word-category" id="word-category-label"></span>
+                    </div>
+                    <div class="word-actions">
+                        <button class="btn-icon" id="btn-vocab-copy" title="Salin kata">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                        </button>
+                        <button class="btn-icon" id="btn-vocab-tts" title="Dengarkan pengucapan">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                            </svg>
+                        </button>
+                        <button class="btn-icon" id="btn-vocab-to-tts" title="Masukkan ke TTS">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Definition -->
+                <div class="word-section">
+                    <div class="word-section-label">Definisi</div>
+                    <p class="word-definition" id="word-definition"></p>
+                </div>
+
+                <!-- Example -->
+                <div class="word-section">
+                    <div class="word-section-label">Contoh Kalimat</div>
+                    <p class="word-example" id="word-example"></p>
+                </div>
+
+                <!-- Speaking Angle -->
+                <div class="word-section">
+                    <div class="word-section-label">Sudut Pandang Berbicara</div>
+                    <p class="word-angle" id="word-angle"></p>
+                </div>
+
+                <!-- TTS Preview -->
+                <button class="btn btn-play vocab-tts-btn" id="btn-vocab-full-tts">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    <span>Dengarkan Semua (Word + Definisi + Contoh)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- TTS Section -->
+        <section class="section section-tts tab-content" data-tab-content="tts">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" y1="19" x2="12" y2="23"/>
+                        <line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                    Text-to-Speech
+                </h2>
+            </div>
+
+            <!-- Text Input -->
+            <div class="input-group">
+                <div class="tts-highlight-wrapper">
+                    <textarea
+                        class="textarea"
+                        id="text-input"
+                        placeholder="Ketik teks yang ingin dibaca dengan suara di sini..."
+                        rows="6"
+                        maxlength="5000"
+                    ></textarea>
+                    <div class="tts-highlight-overlay" id="tts-highlight-overlay"></div>
+                </div>
+                <div class="char-counter">
+                    <span id="char-count">0</span> / 5000 karakter
+                </div>
+            </div>
+
+            <!-- Controls Row 1: Language, Voice -->
+            <div class="controls-row">
+                <div class="control-group">
+                    <label class="label" for="select-lang">Bahasa</label>
+                    <select class="select" id="select-lang">
+                        <option value="id-ID">Indonesia</option>
+                        <option value="en-US">English (US)</option>
+                        <option value="en-GB">English (UK)</option>
+                        <option value="ms-MY">Bahasa Melayu</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label class="label" for="select-voice">Suara</label>
+                    <select class="select" id="select-voice">
+                        <option value="">Memuat suara...</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Controls Row 2: Speed, Pitch -->
+            <div class="controls-row">
+                <div class="control-group">
+                    <label class="label" for="range-speed">
+                        Kecepatan
+                        <span class="label-value" id="val-speed">1.0x</span>
+                    </label>
+                    <input
+                        type="range"
+                        class="range"
+                        id="range-speed"
+                        min="0.5"
+                        max="2.0"
+                        step="0.1"
+                        value="1.0"
+                    >
+                    <div class="speed-presets">
+                        <button class="btn-speed-preset" data-rate="0.7">Lambat</button>
+                        <button class="btn-speed-preset active" data-rate="1.0">Normal</button>
+                        <button class="btn-speed-preset" data-rate="1.5">Cepat</button>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="label" for="range-pitch">
+                        Nada
+                        <span class="label-value" id="val-pitch">1.0x</span>
+                    </label>
+                    <input
+                        type="range"
+                        class="range"
+                        id="range-pitch"
+                        min="0.5"
+                        max="2.0"
+                        step="0.1"
+                        value="1.0"
+                    >
+                </div>
+            </div>
+
+            <!-- Playback Buttons -->
+            <div class="playback-row">
+                <button class="btn btn-play" id="btn-play" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    <span>Jalankan</span>
+                </button>
+                <button class="btn btn-secondary" id="btn-pause" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="6" y="4" width="4" height="16"/>
+                        <rect x="14" y="4" width="4" height="16"/>
+                    </svg>
+                    <span>Jeda</span>
+                </button>
+                <button class="btn btn-secondary" id="btn-stop" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    </svg>
+                    <span>Berhenti</span>
+                </button>
+            </div>
+
+            <!-- Status -->
+            <div class="status-bar" id="status-bar">
+                <span class="status-dot"></span>
+                <span class="status-text" id="status-text">Siap</span>
+            </div>
+        </section>
+
+    </main>
+
+        <!-- Speech-to-Text Section -->
+        <section class="section section-stt tab-content" data-tab-content="stt">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" y1="19" x2="12" y2="23"/>
+                        <line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                    Speech-to-Text
+                </h2>
+            </div>
+            <p class="stt-desc">
+                Tekan tombol mic dan mulai bicara. Teks akan muncul secara real-time.
+            </p>
+
+            <!-- STT Status -->
+            <div class="stt-status" id="stt-status">
+                <div class="stt-mic-wrapper" id="stt-mic-wrapper">
+                    <button class="stt-mic-btn" id="btn-stt-toggle" aria-label="Mulai recording">
+                        <svg class="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                        <svg class="icon-stop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        </svg>
+                    </button>
+                    <span class="stt-wave" id="stt-wave"></span>
+                </div>
+                <span class="stt-status-text" id="stt-status-text">Tekan mic untuk mulai</span>
+            </div>
+
+            <!-- STT Text Output -->
+            <div class="stt-output-wrapper">
+                <div class="stt-output" id="stt-output" contenteditable="true" placeholder="Teks dari suara Anda akan muncul di sini..."></div>
+                <div class="stt-actions">
+                    <button class="btn btn-secondary" id="btn-stt-clear" title="Hapus teks">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                        Hapus
+                    </button>
+                    <button class="btn btn-secondary" id="btn-stt-to-tts" title="Kirim ke TTS">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                        Kirim ke TTS
+                    </button>
+                    <button class="btn btn-primary" id="btn-stt-copy" title="Salin teks">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                        Salin
+                    </button>
+                </div>
+            </div>
+
+            <!-- STT Language -->
+            <div class="stt-lang-row">
+                <label class="label" for="select-stt-lang">Bahasa Pengenalan</label>
+                <select class="select" id="select-stt-lang">
+                    <option value="id-ID">Indonesia</option>
+                    <option value="en-US">English (US)</option>
+                    <option value="en-GB">English (UK)</option>
+                    <option value="ms-MY">Bahasa Melayu</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Favorites Section -->
+        <section class="section section-favorites tab-content" data-tab-content="favorites">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    Topik Tersimpan
+                </h2>
+                <button class="btn btn-secondary" id="btn-clear-favorites">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"/>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                    Hapus Semua
+                </button>
+            </div>
+
+            <!-- Export Actions -->
+            <div class="export-actions" id="export-actions">
+                <button class="btn btn-secondary" id="btn-export-copy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    Salin Semua
+                </button>
+                <button class="btn btn-secondary" id="btn-export-download">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download .txt
+                </button>
+                <button class="btn btn-secondary" id="btn-export-share">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3"/>
+                        <circle cx="6" cy="12" r="3"/>
+                        <circle cx="18" cy="19" r="3"/>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                    Share
+                </button>
+            </div>
+            <div class="favorites-list" id="favorites-list">
+                <p class="favorites-empty" id="favorites-empty">
+                    Belum ada topik yang disimpan.<br>
+                    Klik ikon bookmark di tab Topik untuk menyimpan.
+                </p>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="section section-stats tab-content" data-tab-content="stats">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"/>
+                        <line x1="12" y1="20" x2="12" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                    Statistik
+                </h2>
+                <button class="btn btn-secondary" id="btn-reset-stats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"/>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                    Reset
+                </button>
+                <button class="btn btn-secondary" id="btn-export-stats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Export
+                </button>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-topics">0</span>
+                    <span class="stat-label">Topik Dibuat</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-favorites">0</span>
+                    <span class="stat-label">Favorit Tersimpan</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-timer-sessions">0</span>
+                    <span class="stat-label">Sesi Timer</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-practice-time">0m</span>
+                    <span class="stat-label">Total Waktu Latihan</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-streak">0</span>
+                    <span class="stat-label">Streak Harian</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-top-category">-</span>
+                    <span class="stat-label">Kategori Favorit</span>
+                </div>
+            </div>
+
+            <!-- Category Breakdown -->
+            <div class="stats-breakdown">
+                <h3 class="stats-breakdown-title">Topik per Kategori</h3>
+                <div class="stats-bar-group" id="stats-category-bars">
+                    <div class="stats-bar-row">
+                        <span class="stats-bar-label">Opini</span>
+                        <div class="stats-bar-track">
+                            <div class="stats-bar-fill" id="bar-opinion" style="width:0%"></div>
+                        </div>
+                        <span class="stats-bar-count" id="count-opinion">0</span>
+                    </div>
+                    <div class="stats-bar-row">
+                        <span class="stats-bar-label">Pengalaman</span>
+                        <div class="stats-bar-track">
+                            <div class="stats-bar-fill" id="bar-experience" style="width:0%"></div>
+                        </div>
+                        <span class="stats-bar-count" id="count-experience">0</span>
+                    </div>
+                    <div class="stats-bar-row">
+                        <span class="stats-bar-label">Debat</span>
+                        <div class="stats-bar-track">
+                            <div class="stats-bar-fill" id="bar-debate" style="width:0%"></div>
+                        </div>
+                        <span class="stats-bar-count" id="count-debate">0</span>
+                    </div>
+                    <div class="stats-bar-row">
+                        <span class="stats-bar-label">Seru</span>
+                        <div class="stats-bar-track">
+                            <div class="stats-bar-fill" id="bar-fun" style="width:0%"></div>
+                        </div>
+                        <span class="stats-bar-count" id="count-fun">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestones -->
+            <div class="milestones-section">
+                <h3 class="milestones-title">Pencapaian</h3>
+                <div class="milestones-grid" id="milestones-grid">
+                    <div class="milestone" id="milestone-10" data-threshold="10">
+                        <div class="milestone-icon">10</div>
+                        <div class="milestone-label">Topik Pertama</div>
+                    </div>
+                    <div class="milestone" id="milestone-50" data-threshold="50">
+                        <div class="milestone-icon">50</div>
+                        <div class="milestone-label">Super Latihan</div>
+                    </div>
+                    <div class="milestone" id="milestone-100" data-threshold="100">
+                        <div class="milestone-icon">100</div>
+                        <div class="milestone-label">Master</div>
+                    </div>
+                    <div class="milestone" id="milestone-streak3" data-threshold="3">
+                        <div class="milestone-icon">3</div>
+                        <div class="milestone-label">Streak 3 Hari</div>
+                    </div>
+                    <div class="milestone" id="milestone-streak7" data-threshold="7">
+                        <div class="milestone-icon">7</div>
+                        <div class="milestone-label">Streak 7 Hari</div>
+                    </div>
+                    <div class="milestone" id="milestone-streak30" data-threshold="30">
+                        <div class="milestone-icon">30</div>
+                        <div class="milestone-label">Streak 30 Hari</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <p>Speech TTS App — Latihan Berbicara dengan Text-to-Speech</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data/topics.js"></script>
+    <script src="data/interview.js"></script>
+    <script src="data/vocab.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/voices.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
